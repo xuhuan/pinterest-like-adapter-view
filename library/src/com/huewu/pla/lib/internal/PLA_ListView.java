@@ -37,7 +37,8 @@ import android.view.accessibility.AccessibilityEvent;
 import android.widget.ListAdapter;
 import android.widget.WrapperListAdapter;
 
-import com.huewu.pla.sample.R;
+import com.huewu.pla.lib.R;
+
 
 /*
  * Implementation Notes:
@@ -689,7 +690,7 @@ public class PLA_ListView extends PLA_AbsListView {
 	 *
 	 * @param pos The first position to put in the list
 	 *
-	 * @param nextBottom The location where the bottom of the item associated
+	 * @param bottom The location where the bottom of the item associated
 	 *        with pos should be drawn
 	 *
 	 * @return The view that is currently selected
@@ -1279,7 +1280,6 @@ public class PLA_ListView extends PLA_AbsListView {
 	 * @param childrenBottomOrTop Top or bottom edge of the view to add
 	 * @param flow If flow is true, align top edge to y. If false, align bottom
 	 *        edge to y.
-	 * @param childrenLeft Left edge where children should be positioned
 	 * @param selected Is this position selected?
 	 * @return View that was added
 	 */

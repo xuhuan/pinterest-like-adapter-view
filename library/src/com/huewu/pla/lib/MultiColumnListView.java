@@ -26,7 +26,6 @@ import android.view.View;
 
 import com.huewu.pla.lib.internal.PLA_AbsListView;
 import com.huewu.pla.lib.internal.PLA_ListView;
-import com.huewu.pla.sample.R;
 
 /**
  * @author huewu.ynag
@@ -454,9 +453,11 @@ public class MultiColumnListView extends PLA_ListView {
 		if(listener != null){
 			this.setOnScrollListener(new OnScrollListener() {
 				private int visibleLastIndex = 0;
-				private static final int OFFSET = 2;
+				private static final int OFFSET = 1;
+				
 				@Override
 				public void onScrollStateChanged(PLA_AbsListView view, int scrollState) {
+					// FIXME 有时判断不准确
                     int lastIndex = getAdapter().getCount() - OFFSET;
                     if (scrollState == OnScrollListener.SCROLL_STATE_IDLE &&
                     		visibleLastIndex == lastIndex &&
