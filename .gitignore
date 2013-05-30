@@ -5,6 +5,8 @@ bin/*
 target/
 target/*
 tmp/
+out/
+*.iml
 .DS_Store
 *.orig
 .idea
