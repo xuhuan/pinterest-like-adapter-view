@@ -7,10 +7,10 @@ PLA(PinterestLikeAdapterView)
 
 界面截图
 ----------------
-
-![Screenshot](https://raw.github.com/chenyoca/pinterest-like-adapter-view/develop/screenshot_2.png)
-![Screenshot](https://raw.github.com/chenyoca/pinterest-like-adapter-view/develop/screenshot_3.png)
-![Screenshot](https://raw.github.com/chenyoca/pinterest-like-adapter-view/develop/screenshot_4.png)
+![Screenshot](https://raw.github.com/chenyoca/pinterest-like-adapter-view/master/screenshot_1.png)
+![Screenshot](https://raw.github.com/chenyoca/pinterest-like-adapter-view/master/screenshot_2.png)
+![Screenshot](https://raw.github.com/chenyoca/pinterest-like-adapter-view/master/screenshot_3.png)
+![Screenshot](https://raw.github.com/chenyoca/pinterest-like-adapter-view/master/screenshot_4.png)
 
 说明
 -------------
@@ -18,6 +18,11 @@ PLA(PinterestLikeAdapterView)
 
  * 1、修正[PinterestLikeAdapterView](https://github.com/huewu/PinterestLikeAdapterView)下拉刷新的Bug。
  * 2、添加到列表底部自动添加更多数据的接口：setLoadMoreListener(...)
+ * 3、运行例子依赖第三方库：[Android Common Toolkits](https://github.com/chenyoca/android-common-toolkits)。请使用
+
+    git submodule update --init
+
+    更新模块依赖。
 
 特性
 -----------

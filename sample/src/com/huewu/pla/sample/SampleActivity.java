@@ -4,23 +4,28 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
-
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 import com.huewu.pla.lib.MultiColumnListView;
 import com.huewu.pla.lib.MultiColumnListView.OnLoadMoreListener;
 import com.huewu.pla.sample.internal.ImageWrapper;
 import com.huewu.pla.sample.internal.ImgResource;
-import com.huewu.pla.sample.internal.SimpleViewBuilder;
-import com.lurencun.android.adapter.AbstractAdapter;
-import com.lurencun.android.adapter.CommonAdapter;
-import com.lurencun.android.system.ActivityUtil;
+import com.lurencun.android.adapter.ConvertViewAdapter;
+import com.lurencun.android.adapter.ViewBuilderDelegate;
+import com.lurencun.android.system.ActivityUtility;
 
-public class SampleActivity extends Activity {
+public class SampleActivity extends Activity implements ViewBuilderDelegate<ImageWrapper>{
 
-    protected AbstractAdapter<ImageWrapper> mAdapter = null;
     public static final int PULL_TO_REFRESH_ID = 1008611;
     protected MultiColumnListView mWaterfallView = null;
+
+    // 其它例子Activity共用
+    protected ConvertViewAdapter<ImageWrapper> mAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,7 +55,7 @@ public class SampleActivity extends Activity {
     }
 
     protected void initUIAction() {
-        mAdapter = new CommonAdapter<ImageWrapper>(getLayoutInflater(), new SimpleViewBuilder());
+        mAdapter = new ConvertViewAdapter<ImageWrapper>(getLayoutInflater(), this);
         mWaterfallView.setAdapter(mAdapter);
         mAdapter.update(ImgResource.genData());
         mWaterfallView.setOnLoadMoreListener(new OnLoadMoreListener() {
@@ -58,7 +63,7 @@ public class SampleActivity extends Activity {
             public void onLoadMore() {
                 mAdapter.add(ImgResource.genData());
                 mAdapter.notifyDataSetChanged();
-                ActivityUtil.show(SampleActivity.this, "到List底部自动加载更多数据");
+                ActivityUtility.show(SampleActivity.this, "到List底部自动加载更多数据");
                 //5秒后完成
                 new Handler().postDelayed(new Runnable() {
                     @Override
@@ -70,4 +75,28 @@ public class SampleActivity extends Activity {
         });
     }
 
+    @Override
+    public View newView(LayoutInflater layoutInflater, ImageWrapper data) {
+        View view = layoutInflater.inflate(R.layout.item_sample, null);
+        return view;
+    }
+
+    @Override
+    public void bindView(View view, int position, ImageWrapper data) {
+        ImageView image = (ImageView) view.findViewById(R.id.thumbnail);
+        TextView text = (TextView) view.findViewById(R.id.text);
+        text.setText("W=" + data.width + ", H=" + data.height + ", ID=" + String.valueOf(data.id));
+
+        LinearLayout.LayoutParams params = (LinearLayout.LayoutParams) image.getLayoutParams();
+        params.width = data.width;
+        params.height = data.height;
+        image.setLayoutParams(params);
+        image.setAdjustViewBounds(false);
+        image.setBackgroundColor((int) (0xFF555555 + data.id * 255 * 24));
+        image.setImageResource(data.res);
+        image.invalidate();
+    }
+
+    @Override
+    public void releaseView(View view, ImageWrapper data) {}
 }//end of class
