@@ -5,7 +5,6 @@ android {
     buildToolsVersion "20.0.0"
 
     defaultConfig {
-        applicationId "com.huewu.pla.lib"
         minSdkVersion 14
         targetSdkVersion 14
         versionCode 1
@@ -28,4 +27,4 @@ dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
 }
 
-apply from: 'publish.gradle'
+apply from: 'https://raw.githubusercontent.com/chenyoca/gradle_publish/master/publish_aar.gradle'
