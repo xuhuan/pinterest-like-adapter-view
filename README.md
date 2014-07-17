@@ -1,16 +1,48 @@
 PLA(PinterestLikeAdapterView)
 ==================================
--
 
 基于[PinterestLikeAdapterView](https://github.com/huewu/PinterestLikeAdapterView)开源项目的瀑布流控件。
+
+------
+
+由于公司项目的需要，我将对此Fork做有限的维护，包括：
+
+1. 跟进 Android SDK API 版本
+2. 跟进 Android Studio 的 Gradle 开发环境和编译环境
+3. 修复发现的Bug。
+
+Usage
+--------
+
+如果你只是想使用这个库，可以使用我推送到Sonatype仓库的版本，按如下操作：
+
+在根目录的 `build.gradle` 里添加：
+
+	allprojects {
+	    repositories {
+	        mavenLocal()
+	        mavenCentral()
+			// !!!! ADD THIS !!!
+	        maven{ url 'https://oss.sonatype.org/content/groups/public' }
+	    }
+	}
+
+在依赖中添加：
+
+	dependencies {
+	    compile fileTree(dir: 'libs', include: ['*.jar'])
+
+	    compile 'com.github.chenyoca:plav:1.0@aar'
+	}
+
 
 
 界面截图
 ----------------
-
-![Screenshot](https://raw.github.com/chenyoca/pinterest-like-adapter-view/develop/screenshot_2.png)
-![Screenshot](https://raw.github.com/chenyoca/pinterest-like-adapter-view/develop/screenshot_3.png)
-![Screenshot](https://raw.github.com/chenyoca/pinterest-like-adapter-view/develop/screenshot_4.png)
+![Screenshot](https://raw.github.com/chenyoca/pinterest-like-adapter-view/master/screenshot_1.png)
+![Screenshot](https://raw.github.com/chenyoca/pinterest-like-adapter-view/master/screenshot_2.png)
+![Screenshot](https://raw.github.com/chenyoca/pinterest-like-adapter-view/master/screenshot_3.png)
+![Screenshot](https://raw.github.com/chenyoca/pinterest-like-adapter-view/master/screenshot_4.png)
 
 说明
 -------------
@@ -18,21 +50,18 @@ PLA(PinterestLikeAdapterView)
 
  * 1、修正[PinterestLikeAdapterView](https://github.com/huewu/PinterestLikeAdapterView)下拉刷新的Bug。
  * 2、添加到列表底部自动添加更多数据的接口：setLoadMoreListener(...)
+ 
 
 特性
 -----------
  * **纯组件** 像原生ListView一样使用。
   
-  > 类，就应该有其明确的职责。不要把无相关的功能都死命的往这个类里塞塞塞塞塞塞。
-  图片加载不是瀑布流组件的功能！
-  判断网络是否正常不是瀑布流组件的功能!
-  怎么创建瀑布流组件Item的View，也不是瀑布流组件的功能！
-
  * 自定义瀑布流列数
 
  * 支持到列表底部自动加载更多数据
 
  * 支持下拉刷新：MultiColumnPullToRefreshListView
+
 
 ## License
 
